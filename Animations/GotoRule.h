@@ -34,7 +34,7 @@ public:
         }
     }
     void UpdateBoid(Boid* a, std::vector<Boid*> boids) {
-        a->AddVelocity((home - a->GetPosition()) / 100.0);
+        a->AddVelocity((home - a->GetPosition()) / 150.0);
     }
 
 };

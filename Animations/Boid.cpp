@@ -41,6 +41,7 @@ void Boid::AddVelocity(Vector<3,float> v) {
 void Boid::Update(unsigned int dt) {
     float delta = dt/1000000.0;
 
+
     position += velocity*delta;    
     transformationNode->SetPosition(position);
     if (velocity.GetLength() < 0.01)
@@ -55,7 +56,10 @@ void Boid::Update(unsigned int dt) {
 
     Matrix<3,3,float> rotMat(x,y,z);
     Quaternion<float> newRot(rotMat);
-    rotation = Quaternion<float>(rotation,newRot.GetNormalize(),0.1); // Rotate 10%
+    
+    rotation = Quaternion<float>(rotation,newRot.GetNormalize(),10*delta); // Rotate 10%
+    //rotation = Quaternion<float>(rotation,newRot.GetNormalize(),0.1); // Rotate 10%
+    //rotation = newRot;
     transformationNode->SetRotation(rotation);
 
     prev = velocity;
