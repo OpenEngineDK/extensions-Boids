@@ -26,11 +26,17 @@ using namespace Scene;
 class Boid {
 private:
     TransformationNode* transformationNode;
+    Vector<3,float> velocity,prev;
+    Vector<3,float> position;
+    Quaternion<float> rotation;
+
 public:
     Boid(ISceneNode *n);
     TransformationNode* GetTransformationNode();
+    Vector<3,float> GetPosition();
+    Vector<3,float> GetVelocity();
     void AddVelocity(Vector<3,float> v);
-    void Update(float dt);
+    void Update(unsigned int dt);
 };
 
 } // NS Animations

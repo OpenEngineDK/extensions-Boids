@@ -32,6 +32,7 @@ private:
 public:
     Flock();
     ISceneNode* GetRootNode();
+    void AddRule(IRule* r);
     void AddBoid(ISceneNode* node);
     void Handle(Core::ProcessEventArg arg);
     //void Update(float dt);
