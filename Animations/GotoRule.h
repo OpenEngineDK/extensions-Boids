@@ -12,9 +12,12 @@
 #define _OE_GOTO_RULE_H_
 
 #include <Animations/IRule.h>
+#include <Math/RandomGenerator.h>
 
 namespace OpenEngine {
 namespace Animations {
+
+    using namespace Math;
 
 /**
  * Short description.
@@ -24,6 +27,7 @@ namespace Animations {
 class GotoRule : public IRule {
 private:
     Vector<3,float> home;
+    RandomGenerator rg;
 public:
     GotoRule(Vector<3,float> home) : home(home) {}
     void UpdateBoids(std::vector<Boid*> boids) {
@@ -34,7 +38,11 @@ public:
         }
     }
     void UpdateBoid(Boid* a, std::vector<Boid*> boids) {
-        a->AddVelocity((home - a->GetPosition()) / 16.0);
+        Vector<3,float> h = home;
+        h += Vector<3,float>(rg.UniformFloat(-1,1),
+                             rg.UniformFloat(-1,1),
+                             rg.UniformFloat(-1,1))*100.0;
+        a->AddVelocity((h - a->GetPosition()) / 32.0);
     }
 
 };

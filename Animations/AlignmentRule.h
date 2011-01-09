@@ -44,8 +44,7 @@ public:
         
     }
     void UpdateBoid(Boid* a, std::vector<Boid*> boids, Vector<3,float> pv) {
-        //logger.info << (pv - a->GetVelocity()) << logger.end;
-        a->AddVelocity((pv - a->GetVelocity()) / 16.0);
+        a->AddVelocity((pv - a->GetVelocity()) / 128.0);
         
     }
 

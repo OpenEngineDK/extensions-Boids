@@ -25,7 +25,7 @@ class SpeedRule : public IRule{
 private:
     float minSpeed;
 public:
-    SpeedRule() : minSpeed(10.0) {}
+    SpeedRule() : minSpeed(30.0) {}
 
     void UpdateBoids(std::vector<Boid*> boids) {
         for (std::vector<Boid*>::iterator itr = boids.begin();
