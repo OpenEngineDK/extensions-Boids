@@ -25,10 +25,10 @@ class AlignmentRule : public IRule {
 private:
     float magnitude;
 public:
-    AlignmentRule() : magnitude(128.0) {}
+    AlignmentRule() : magnitude(0.001) {}
     
     void ReloadProperties(Utils::PropertyTreeNode pn) {
-        magnitude = pn.GetPath("alignment.magnitude",128.0f);
+        magnitude = pn.GetPath("alignment.magnitude",0.001);
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {
@@ -47,7 +47,7 @@ public:
         }        
     }
     void UpdateBoid(Boid* a, std::vector<Boid*> boids, Vector<3,float> pv) {
-        a->AddVelocity((pv - a->GetVelocity()) / magnitude);
+        a->AddVelocity((pv - a->GetVelocity()) * magnitude);
         
     }
 

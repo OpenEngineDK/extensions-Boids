@@ -33,12 +33,12 @@ private:
 public:
     GotoRule() 
         : randomFactor(0.0)
-        , magnitude(32.0) {}
+        , magnitude(0.1) {}
 
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         home = pn.GetPath("goto.home", Vector<3,float>(0,0,0));
         randomFactor = pn.GetPath("goto.random", 0.0f);
-        magnitude = pn.GetPath("goto.magnitude", 32.0f);
+        magnitude = pn.GetPath("goto.magnitude", 0.1f);
     }
 
 
@@ -55,7 +55,7 @@ public:
         h += Vector<3,float>(rg.UniformFloat(-1,1),
                              rg.UniformFloat(-1,1),
                              rg.UniformFloat(-1,1))*randomFactor;
-        a->AddVelocity((h - a->GetPosition()) / magnitude);
+        a->AddVelocity((h - a->GetPosition()) * magnitude);
     }
 
 };
