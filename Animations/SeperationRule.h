@@ -23,7 +23,10 @@ namespace Animations {
  * @class SeperationRule SeperationRule.h ons/Boids/Animations/SeperationRule.h
  */
 class SeperationRule : public IRule {
+    float seperationDist;
 public:
+    SeperationRule() : seperationDist(15.0) {}
+
     void UpdateBoids(std::vector<Boid*> boids) {
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
@@ -39,8 +42,8 @@ public:
             Boid *b = *itr;
             if (a == b) continue;
             Vector<3,float> d = (b->GetPosition() - a->GetPosition());
-            if (d.GetLength() < 10.0) {
-                c = c - d*10.0;
+            if (d.GetLength() < seperationDist) {
+                c = c - (d/seperationDist);
             }
         }
         a->AddVelocity(c);
