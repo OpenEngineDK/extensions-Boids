@@ -32,15 +32,15 @@ public:
         }
     }
     void UpdateBoid(Boid* a, std::vector<Boid*> boids) {
-        Vector<3,float> c;
+        Vector<3,float> c(0,0,0);
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
              itr++) {
             Boid *b = *itr;
             if (a == b) continue;
             Vector<3,float> d = (b->GetPosition() - a->GetPosition());
-            if (d.GetLength() < 10) {
-                c = c - d;
+            if (d.GetLength() < 10.0) {
+                c = c - d*10.0;
             }
         }
         a->AddVelocity(c);
