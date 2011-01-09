@@ -1,0 +1,30 @@
+// 
+// -------------------------------------------------------------------
+// Copyright (C) 2007 OpenEngine.dk (See AUTHORS)
+//
+// This program is free software; It is covered by the GNU General
+// Public License version 2 or any later version.
+// See the GNU General Public License for more details (see LICENSE).
+//--------------------------------------------------------------------
+
+
+#ifndef _OE_I_RULE_H_
+#define _OE_I_RULE_H_
+
+
+namespace OpenEngine {
+namespace Animations {
+
+/**
+ * Short description.
+ *
+ * @class IRule IRule.h ons/Boids/Animations/IRule.h
+ */
+class IRule {
+public:
+    virtual UpdateBoids(std::vector<Boid*> boids) =0;
+};
+} // NS Animations
+} // NS OpenEngine
+
+#endif // _OE_I_RULE_H_

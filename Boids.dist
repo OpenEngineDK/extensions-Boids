@@ -1,0 +1,6 @@
+# Boids dist
+
+# standard set of extensions
+darcs /extensions/Boids        http://openengine.dk/code/extensions/Boids
+darcs-dev /extensions/Boids    fh.daimi.au.dk:/users/cgd/code/extensions/Boids
+
