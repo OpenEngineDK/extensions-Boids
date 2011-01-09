@@ -41,6 +41,7 @@ public:
             Boid* b = *itr;
             Vector<3,float> vel = b->GetVelocity();
             float speed = vel.GetLength();
+            if (speed < 0.001) continue;
             if (speed < minSpeed)
                 b->AddVelocity((vel / speed) * minSpeed);
             else if (speed > maxSpeed) {
