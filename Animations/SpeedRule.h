@@ -8,8 +8,8 @@
 //--------------------------------------------------------------------
 
 
-#ifndef _OE_ALIGNMENT_RULE_H_
-#define _OE_ALIGNMENT_RULE_H_
+#ifndef _OE_SPEED_RULE_H_
+#define _OE_SPEED_RULE_H_
 
 #include <Animations/IRule.h>
 
@@ -19,38 +19,28 @@ namespace Animations {
 /**
  * Short description.
  *
- * @class AlignmentRule AlignmentRule.h ons/Boids/Animations/AlignmentRule.h
+ * @class SpeedRule SpeedRule.h ons/Boids/Animations/SpeedRule.h
  */
-class AlignmentRule : public IRule {
+class SpeedRule : public IRule{
 private:
-
+    float minSpeed;
 public:
+    SpeedRule() : minSpeed(10.0) {}
+
     void UpdateBoids(std::vector<Boid*> boids) {
-        Vector<3,float> collectiveVelocity;
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
              itr++) {
             Boid* b = *itr;
-            collectiveVelocity += b->GetVelocity();
-        }
-        collectiveVelocity /= boids.size();
-        
-        
-        for (std::vector<Boid*>::iterator itr = boids.begin();
-             itr != boids.end();
-             itr++) {
-            UpdateBoid(*itr,boids,collectiveVelocity);
-        }
-        
-    }
-    void UpdateBoid(Boid* a, std::vector<Boid*> boids, Vector<3,float> pv) {
-        //logger.info << (pv - a->GetVelocity()) << logger.end;
-        a->AddVelocity((pv - a->GetVelocity()) / 16.0);
-        
-    }
+            Vector<3,float> vel = b->GetVelocity();
+            float speed = vel.GetLength();
+            if (speed < minSpeed)
+                b->AddVelocity((vel / speed) * minSpeed);
 
+        }
+    }
 };
 } // NS Animations
 } // NS OpenEngine
 
-#endif // _OE_ALIGNMENT_RULE_H_
+#endif // _OE_SPEED_RULE_H_

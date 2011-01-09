@@ -29,7 +29,7 @@ Vector<3,float> Boid::GetPosition() {
 }
 
 Vector<3,float> Boid::GetVelocity() {
-    return prev;
+    return velocity;
 }
 
     
