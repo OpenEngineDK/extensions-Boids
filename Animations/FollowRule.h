@@ -26,24 +26,27 @@ namespace Animations {
 class FollowRule : public IRule {
 private:
     TransformationNode* followTrans;
-
+    float magnitude;
 public:
-    FollowRule(TransformationNode* followTrans) : followTrans(followTrans) {}
+    FollowRule(TransformationNode* followTrans)
+    : followTrans(followTrans)
+    , magnitude(0.01) {}
     ~FollowRule() {}
 
     void SetTransformationToFollow(TransformationNode* followTrans) {
         this->followTrans = followTrans;
     }
+    void ReloadProperties(Utils::PropertyTreeNode pn) {
+        magnitude = pn.GetPath("follow.magnitude",0.01f);
+    }
 
     void UpdateBoids(std::vector<Boid*> boids) {
-
         Vector<3,float> pos = followTrans->GetPosition();
-
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
              itr++) {
             Boid* b = *itr;
-            b->AddVelocity((pos - b->GetPosition()) / 32.0);
+            b->AddVelocity((pos - b->GetPosition()) * magnitude);
         }
     }
 };
