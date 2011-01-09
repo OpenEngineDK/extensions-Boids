@@ -16,6 +16,7 @@
 #include <Core/IListener.h>
 #include <Core/EngineEvents.h>
 #include <vector>
+#include <Math/RandomGenerator.h>
 
 namespace OpenEngine {
 namespace Animations {
@@ -29,6 +30,7 @@ private:
     ISceneNode *rootNode;
     std::vector<Boid*> boids;
     std::list<IRule*> rules;
+    Math::RandomGenerator* randomGenerator;
 public:
     Flock();
     ISceneNode* GetRootNode();

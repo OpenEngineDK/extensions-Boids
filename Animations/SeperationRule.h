@@ -25,7 +25,7 @@ namespace Animations {
 class SeperationRule : public IRule {
     float seperationDist;
 public:
-    SeperationRule() : seperationDist(15.0) {}
+    SeperationRule() : seperationDist(20.0) {}
 
     void UpdateBoids(std::vector<Boid*> boids) {
         for (std::vector<Boid*>::iterator itr = boids.begin();
@@ -42,8 +42,9 @@ public:
             Boid *b = *itr;
             if (a == b) continue;
             Vector<3,float> d = (b->GetPosition() - a->GetPosition());
-            if (d.GetLength() < seperationDist) {
-                c = c - (d/seperationDist);
+            float dist = d.GetLength();
+            if (dist < seperationDist) {
+                c = c - (d/seperationDist)*(seperationDist - dist);
             }
         }
         a->AddVelocity(c);

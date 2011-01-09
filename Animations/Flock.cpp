@@ -5,16 +5,18 @@
 namespace OpenEngine {
 namespace Animations {
 
-    using namespace std;
+using namespace std;
+using namespace Math;
 
-Flock::Flock() : rootNode(new SceneNode()) {
+Flock::Flock() : rootNode(new SceneNode())
+               , randomGenerator(new RandomGenerator()) {    
 }
 
 ISceneNode* Flock::GetRootNode() {
     return rootNode;
 }
 void Flock::AddBoid(ISceneNode* node) {
-    Boid *b = new Boid(node);
+    Boid *b = new Boid(node,randomGenerator);
     boids.push_back(b);
     rootNode->AddNode(b->GetTransformationNode());
 }

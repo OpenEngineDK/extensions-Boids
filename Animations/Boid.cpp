@@ -1,6 +1,5 @@
 #include "Boid.h"
 
-#include <Math/RandomGenerator.h>
 #include <Logging/Logger.h>
 
 namespace OpenEngine {
@@ -8,14 +7,12 @@ namespace Animations {
     
 using namespace Math;
 
-Boid::Boid(ISceneNode* node) {
+Boid::Boid(ISceneNode* node, RandomGenerator* rg) {
     transformationNode = new TransformationNode();
     transformationNode->AddNode(node);
-    RandomGenerator rg;
-    rg.SeedWithTime();
-    position = Vector<3,float>(rg.UniformFloat(-20,20),
-                               rg.UniformFloat(-20,20),
-                               rg.UniformFloat(-20,20));
+    position = Vector<3,float>(rg->UniformFloat(-40,40),
+                               rg->UniformFloat(-40,40),
+                               rg->UniformFloat(-40,40));
     transformationNode->SetPosition(position);
     velocity = Vector<3,float>(0,0,0);
 }

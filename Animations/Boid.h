@@ -12,6 +12,7 @@
 #define _OE_BOID_H_
 
 #include <Scene/TransformationNode.h>
+#include <Math/RandomGenerator.h>
 
 namespace OpenEngine {
 namespace Animations {
@@ -31,7 +32,7 @@ private:
     Quaternion<float> rotation;
 
 public:
-    Boid(ISceneNode *n);
+    Boid(ISceneNode *n, Math::RandomGenerator* rg);
     TransformationNode* GetTransformationNode();
     Vector<3,float> GetPosition();
     Vector<3,float> GetVelocity();
