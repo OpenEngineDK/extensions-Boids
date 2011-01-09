@@ -11,6 +11,7 @@
 #ifndef _OE_I_RULE_H_
 #define _OE_I_RULE_H_
 
+#include <vector>
 
 namespace OpenEngine {
 namespace Animations {
@@ -22,7 +23,7 @@ namespace Animations {
  */
 class IRule {
 public:
-    virtual UpdateBoids(std::vector<Boid*> boids) =0;
+    virtual void UpdateBoids(std::vector<Boid*> boids) =0;
 };
 } // NS Animations
 } // NS OpenEngine

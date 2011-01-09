@@ -28,6 +28,7 @@ private:
     TransformationNode* transformationNode;
 public:
     Boid(ISceneNode *n);
+    TransformationNode* GetTransformationNode();
     void AddVelocity(Vector<3,float> v);
     void Update(float dt);
 };
