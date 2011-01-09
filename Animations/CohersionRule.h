@@ -26,10 +26,10 @@ class CohersionRule : public IRule {
 private:
     float magnitude;
 public:
-    CohersionRule() : magnitude(32.0) {}
+    CohersionRule() : magnitude(0.01) {}
 
     void ReloadProperties(Utils::PropertyTreeNode pn) {
-        magnitude = pn.GetPath("cohersion.magnitude",32.0f);
+        magnitude = pn.GetPath("cohersion.magnitude",0.01f);
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {
@@ -50,7 +50,7 @@ public:
         }
     }
     void UpdateBoid(Boid* a, std::vector<Boid*> boids, Vector<3,float> pc) {
-        a->AddVelocity((pc - a->GetPosition()) / magnitude);
+        a->AddVelocity((pc - a->GetPosition()) * magnitude);
         
     }
     
