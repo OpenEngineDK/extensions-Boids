@@ -49,6 +49,7 @@ public:
             UpdateBoid(*itr,boids);
         }
     }
+
     void UpdateBoid(Boid* a, std::vector<Boid*> boids) {
         Vector<3,float> h = home;
         h += Vector<3,float>(rg.UniformFloat(-1,1),
