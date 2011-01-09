@@ -25,6 +25,15 @@ void Flock::AddRule(IRule* r) {
     rules.push_back(r);
 }
 
+void Flock::ReloadProperties(Utils::PropertyTreeNode n) {
+    for (list<IRule*>::iterator itr = rules.begin();
+         itr != rules.end();
+         itr++) {
+        IRule *rule = *itr;
+        rule->ReloadProperties(n);
+    }    
+}
+
 void Flock::Handle(Core::ProcessEventArg arg) {
     // Fire rules
     for (list<IRule*>::iterator itr = rules.begin();

@@ -26,6 +26,11 @@ class SeperationRule : public IRule {
     float seperationDist;
 public:
     SeperationRule() : seperationDist(20.0) {}
+    
+    void ReloadProperties(Utils::PropertyTreeNode pn) {
+        seperationDist = pn.GetPath("seperation.dist", 20.0);
+    }
+
 
     void UpdateBoids(std::vector<Boid*> boids) {
         for (std::vector<Boid*>::iterator itr = boids.begin();

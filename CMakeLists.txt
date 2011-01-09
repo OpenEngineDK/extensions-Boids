@@ -6,3 +6,7 @@ ADD_LIBRARY(Extensions_Boids
   Animations/Flock.h
   Animations/Flock.cpp
 )
+
+TARGET_LINK_LIBRARIES(Extensions_Boids
+  Extensions_PropertyTree
+)

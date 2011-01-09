@@ -12,6 +12,7 @@
 #define _OE_SPEED_RULE_H_
 
 #include <Animations/IRule.h>
+#include <Logging/Logger.h>
 
 namespace OpenEngine {
 namespace Animations {
@@ -24,9 +25,15 @@ namespace Animations {
 class SpeedRule : public IRule{
 private:
     float minSpeed;
+    float maxSpeed;
 public:
-    SpeedRule() : minSpeed(30.0) {}
+    SpeedRule() : minSpeed(30.0), maxSpeed(100.0) {}
 
+    void ReloadProperties(Utils::PropertyTreeNode pn) {
+        minSpeed = pn.GetPath("speed.min", 30.0);
+        maxSpeed = pn.GetPath("speed.max", 100.0);
+
+    }
     void UpdateBoids(std::vector<Boid*> boids) {
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
@@ -36,7 +43,9 @@ public:
             float speed = vel.GetLength();
             if (speed < minSpeed)
                 b->AddVelocity((vel / speed) * minSpeed);
-
+            else if (speed > maxSpeed) {
+                b->AddVelocity(-(vel / speed) * (speed - maxSpeed));
+            }
         }
     }
 };

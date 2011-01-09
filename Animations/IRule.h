@@ -12,6 +12,7 @@
 #define _OE_I_RULE_H_
 
 #include <vector>
+#include <Utils/PropertyTree.h>
 
 namespace OpenEngine {
 namespace Animations {
@@ -24,6 +25,7 @@ namespace Animations {
 class IRule {
 public:
     virtual void UpdateBoids(std::vector<Boid*> boids) =0;
+    virtual void ReloadProperties(Utils::PropertyTreeNode pn) {}
 };
 } // NS Animations
 } // NS OpenEngine

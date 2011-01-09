@@ -17,6 +17,7 @@
 #include <Core/EngineEvents.h>
 #include <vector>
 #include <Math/RandomGenerator.h>
+#include <Utils/PropertyTree.h>
 
 namespace OpenEngine {
 namespace Animations {
@@ -37,7 +38,7 @@ public:
     void AddRule(IRule* r);
     void AddBoid(ISceneNode* node);
     void Handle(Core::ProcessEventArg arg);
-    //void Update(float dt);
+    void ReloadProperties(Utils::PropertyTreeNode n);
     
 };
 

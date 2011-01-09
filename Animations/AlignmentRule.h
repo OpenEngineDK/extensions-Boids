@@ -23,8 +23,14 @@ namespace Animations {
  */
 class AlignmentRule : public IRule {
 private:
-
+    float magnitude;
 public:
+    AlignmentRule() : magnitude(128.0) {}
+    
+    void ReloadProperties(Utils::PropertyTreeNode pn) {
+        magnitude = pn.GetPath("alignment.magnitude",128.0f);
+    }
+
     void UpdateBoids(std::vector<Boid*> boids) {
         Vector<3,float> collectiveVelocity;
         for (std::vector<Boid*>::iterator itr = boids.begin();
@@ -33,18 +39,15 @@ public:
             Boid* b = *itr;
             collectiveVelocity += b->GetVelocity();
         }
-        collectiveVelocity /= boids.size();
-        
-        
+        collectiveVelocity /= boids.size();                
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
              itr++) {
             UpdateBoid(*itr,boids,collectiveVelocity);
-        }
-        
+        }        
     }
     void UpdateBoid(Boid* a, std::vector<Boid*> boids, Vector<3,float> pv) {
-        a->AddVelocity((pv - a->GetVelocity()) / 128.0);
+        a->AddVelocity((pv - a->GetVelocity()) / magnitude);
         
     }
 
