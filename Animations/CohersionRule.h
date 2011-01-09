@@ -12,6 +12,7 @@
 #define _OE_COHERSION_RULE_H_
 
 #include <Animations/IRule.h>
+#include <Logging/Logger.h>
 
 namespace OpenEngine {
 namespace Animations {
@@ -26,26 +27,24 @@ private:
 
 public:
     void UpdateBoids(std::vector<Boid*> boids) {
+        Vector<3,float> center;
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
              itr++) {
-            UpdateBoid(*itr,boids);
+            Boid* b = *itr;
+            center += b->GetPosition();           
+        }
+        center /= boids.size();
+
+        
+        for (std::vector<Boid*>::iterator itr = boids.begin();
+             itr != boids.end();
+             itr++) {
+            UpdateBoid(*itr,boids,center);
         }
     }
-    void UpdateBoid(Boid* a, std::vector<Boid*> boids) {
-        Vector<3,float> pc(0,0,0);
-        int c = 0;
-        for (std::vector<Boid*>::iterator itr = boids.begin();
-             itr != boids.end();
-             itr++) {
-            Boid *b = *itr;
-            if (b == a) continue;
-            Vector<3,float> d = (b->GetPosition() - a->GetPosition());
-            pc += b->GetPosition();
-            c++;
-        }
-        pc = pc / max(c,1);
-        a->AddVelocity((pc - a->GetPosition()) / 150.0);
+    void UpdateBoid(Boid* a, std::vector<Boid*> boids, Vector<3,float> pc) {
+        a->AddVelocity((pc - a->GetPosition()) / 32.0);
         
     }
     
