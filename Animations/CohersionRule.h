@@ -33,7 +33,7 @@ public:
         }
     }
     void UpdateBoid(Boid* a, std::vector<Boid*> boids) {
-        Vector<3,float> pc;
+        Vector<3,float> pc(0,0,0);
         int c = 0;
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
@@ -45,7 +45,7 @@ public:
             c++;
         }
         pc = pc / max(c,1);
-        a->AddVelocity((pc - a->GetVelocity()) / 100.0);
+        a->AddVelocity((pc - a->GetPosition()) / 150.0);
         
     }
     
