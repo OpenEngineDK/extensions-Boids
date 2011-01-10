@@ -25,6 +25,10 @@ Vector<3,float> Boid::GetPosition() {
     return position;
 }
 
+void Boid::SetPosition(Vector<3,float> p) {
+    position = p;
+}
+
 Vector<3,float> Boid::GetVelocity() {
     return velocity;
 }
