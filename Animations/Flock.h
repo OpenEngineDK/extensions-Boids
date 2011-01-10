@@ -39,7 +39,7 @@ public:
     void AddBoid(ISceneNode* node);
     void Handle(Core::ProcessEventArg arg);
     void ReloadProperties(Utils::PropertyTreeNode n);
-    
+    TransformationNode* GetTransformationNode(int idx);
 };
 
 } // NS Animations

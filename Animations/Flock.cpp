@@ -16,10 +16,16 @@ ISceneNode* Flock::GetRootNode() {
     return rootNode;
 }
 void Flock::AddBoid(ISceneNode* node) {
-    Boid *b = new Boid(node,randomGenerator);
+    Boid* b = new Boid(node,randomGenerator);
     boids.push_back(b);
     rootNode->AddNode(b->GetTransformationNode());
 }
+
+TransformationNode* Flock::GetTransformationNode(int idx) {
+    Boid* b = boids.at(idx);
+    return b->GetTransformationNode();
+}
+
 
 void Flock::AddRule(IRule* r) {
     rules.push_back(r);

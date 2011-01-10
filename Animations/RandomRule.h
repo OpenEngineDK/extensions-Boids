@@ -30,7 +30,7 @@ public:
         rg.SeedWithTime();
     }
     void ReloadProperties(Utils::PropertyTreeNode pn) {
-        magnitude = pn.GetPath("random.magnitude", 10.0);        
+        magnitude = pn.GetPath("random.magnitude", 10.0);
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {
