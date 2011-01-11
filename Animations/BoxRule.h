@@ -23,27 +23,31 @@ namespace Animations {
  */
 class BoxRule : public IRule {
 private:
-    Box box;
+    Vector<3,float> startPoint;
+    Vector<3,float> endPoint;
 public:
-    BoxRule(Box b) : box(b) {}
-        void UpdateBoids(std::vector<Boid*> boids) {
-            for (std::vector<Boid*>::iterator itr = boids.begin();
-                 itr != boids.end();
-                 itr++) {
-                Boid* b = *itr;
-                Vector<3,float> pos = b->GetPosition();
-                Vector<3,float> d = pos - box.GetCenter();
-                Vector<3,float> s = box.GetSize();
-                for (int i=0;i<3;i++) {
-                    if (d[i] > s[i]) {                        
-                        pos[i] = s[i];
-                    } else if (-d[i] > s[i]) {
-                        pos[i] = -s[i];
-                    }                        
+    BoxRule(Vector<3,float> s, Vector<3,float> e) 
+        : startPoint(s), 
+          endPoint(e) 
+    {}
+    void UpdateBoids(std::vector<Boid*> boids) {
+        for (std::vector<Boid*>::iterator itr = boids.begin();
+             itr != boids.end();
+             itr++) {
+            Boid* b = *itr;
+            Vector<3,float> pos = b->GetPosition();
+            Vector<3,float> npos = pos;
+            for (int i=0;i<3;i++) {
+                if (pos[i] < startPoint[i]) {
+                    npos[i] = startPoint[i];
+                } else if (pos[i] > endPoint[i] ) {
+                    npos[i] = endPoint[i];
                 }
-                b->SetPosition(pos);
             }
+            b->SetPosition(npos);
+
         }
+    }
 };
 } // NS Animations
 } // NS OpenEngine
