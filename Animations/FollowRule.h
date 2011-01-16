@@ -42,6 +42,7 @@ public:
 
     void UpdateBoids(std::vector<Boid*> boids) {
         Vector<3,float> pos = followTrans->GetPosition();
+
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
              itr++) {
