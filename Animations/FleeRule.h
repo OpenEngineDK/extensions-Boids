@@ -52,8 +52,12 @@ public:
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {
-        Vector<3,float> enemyPos = fleeFromTrans->GetPosition();
-     
+        //Vector<3,float> enemyPos = fleeFromTrans->GetPosition();
+        Quaternion<float> r;
+        Vector<3,float> enemyPos;
+        Vector<3,float> s;
+        fleeFromTrans->GetAccumulatedTransformations(&enemyPos,&r,&s);
+        
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
              itr++) {
