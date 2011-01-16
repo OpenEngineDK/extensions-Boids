@@ -25,15 +25,21 @@ class BoxRule : public IRule {
 private:
     Vector<3,float> startPoint;
     Vector<3,float> endPoint;
+    float boxSpeed;
+    float boxDist;
 public:
     BoxRule(Vector<3,float> s, Vector<3,float> e) 
-        : startPoint(s), 
-          endPoint(e) 
+        : startPoint(s)
+        , endPoint(e) 
+        , boxSpeed(10.0)
+        , boxDist(10.0)
     {}
 
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         startPoint = pn.GetPath("box.start", startPoint);
         endPoint = pn.GetPath("box.end", endPoint);
+        boxSpeed = pn.GetPath("box.speed", boxSpeed);
+        boxDist = pn.GetPath("box.dist", boxDist);
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {
@@ -41,16 +47,25 @@ public:
              itr != boids.end();
              itr++) {
             Boid* b = *itr;
-            Vector<3,float> pos = b->GetPosition();
-            Vector<3,float> npos = pos;
-            for (int i=0;i<3;i++) {
-                if (pos[i] < startPoint[i]) {
-                    npos[i] = startPoint[i];
-                } else if (pos[i] > endPoint[i] ) {
-                    npos[i] = endPoint[i];
-                }
+            Vector<3,float> p = b->GetPosition();
+            Vector<3,float> v;
+
+            if ((p[0] - startPoint[0]) < boxDist) {
+                v[0] = boxSpeed;
+            } else if ((endPoint[0] - p[0]) < boxDist ) {
+                v[0] = -boxSpeed;
             }
-            b->SetPosition(npos);
+            if ((p[1] - startPoint[1]) < boxDist) {
+                v[1] = boxSpeed;
+            } else if ((endPoint[1] - p[1]) < boxDist ) {
+                v[1] = -boxSpeed;
+            }
+            if ((p[2] - startPoint[2]) < boxDist) {
+                v[2] = boxSpeed;
+            } else if ((endPoint[2] - p[2]) < boxDist ) {
+                v[2] = -boxSpeed;
+            }
+            b->AddVelocity(v);
 
         }
     }
