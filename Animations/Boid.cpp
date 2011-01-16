@@ -21,7 +21,7 @@ TransformationNode* Boid::GetTransformationNode() {
     return transformationNode;
 }
 
-Vector<3,float> Boid::GetPosition() {
+Vector<3,float> Boid::GetPosition() const {
     return position;
 }
 

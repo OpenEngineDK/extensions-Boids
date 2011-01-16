@@ -30,6 +30,12 @@ public:
         : startPoint(s), 
           endPoint(e) 
     {}
+
+    void ReloadProperties(Utils::PropertyTreeNode pn) {
+        startPoint = pn.GetPath("box.start", startPoint);
+        endPoint = pn.GetPath("box.end", endPoint);
+    }
+
     void UpdateBoids(std::vector<Boid*> boids) {
         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();

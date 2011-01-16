@@ -34,7 +34,7 @@ private:
 public:
     Boid(ISceneNode *n, Math::RandomGenerator* rg);
     TransformationNode* GetTransformationNode();
-    Vector<3,float> GetPosition();
+    Vector<3,float> GetPosition() const;
     void SetPosition(Vector<3,float> p);
     Vector<3,float> GetVelocity();
     void AddVelocity(Vector<3,float> v);
