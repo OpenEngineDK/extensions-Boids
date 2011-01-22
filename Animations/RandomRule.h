@@ -26,7 +26,9 @@ private:
     float magnitude;
     RandomGenerator rg;
 public:
-    RandomRule() : magnitude(10.0) {
+    RandomRule() 
+        : IRule("Random")
+        , magnitude(10.0) {
         rg.SeedWithTime();
     }
     void ReloadProperties(Utils::PropertyTreeNode pn) {

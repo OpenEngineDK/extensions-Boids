@@ -25,7 +25,7 @@ class AlignmentRule : public IRule {
 private:
     float magnitude;
 public:
-    AlignmentRule() : magnitude(0.001) {}
+    AlignmentRule() : IRule("Alignment"), magnitude(0.001) {}
     
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         magnitude = pn.GetPath("alignment.magnitude",0.001);

@@ -25,12 +25,10 @@ namespace Animations {
 class SeperationRule : public IRule {
     float seperationDist;    
 public:
-    SeperationRule() : seperationDist(20.0) {}
+    SeperationRule() : IRule("Seperation"), seperationDist(20.0) {}
     
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         seperationDist = pn.GetPath("seperation.dist", 20.0);
-
-        logger.info << "Separation changed: " << seperationDist << logger.end;
     }
 
 

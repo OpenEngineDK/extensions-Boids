@@ -27,7 +27,7 @@ private:
     float minSpeed;
     float maxSpeed;
 public:
-    SpeedRule() : minSpeed(30.0), maxSpeed(100.0) {}
+    SpeedRule() : IRule("Speed"), minSpeed(30.0), maxSpeed(100.0) {}
 
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         minSpeed = pn.GetPath("speed.min", 30.0);

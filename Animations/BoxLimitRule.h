@@ -27,9 +27,9 @@ private:
     Vector<3,float> endPoint;
 public:
     BoxLimitRule(Vector<3,float> s, Vector<3,float> e) 
-        : startPoint(s), 
-          endPoint(e)
-    {}
+        : IRule("BoxLimit")
+        , startPoint(s)
+        , endPoint(e) {}
 
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         startPoint = pn.GetPath("boxlimit.start", startPoint);

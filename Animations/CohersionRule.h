@@ -26,7 +26,7 @@ class CohersionRule : public IRule {
 private:
     float magnitude;
 public:
-    CohersionRule() : magnitude(0.01) {}
+    CohersionRule() : IRule("Cohersion"), magnitude(0.01) {}
 
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         magnitude = pn.GetPath("cohersion.magnitude",0.01f);

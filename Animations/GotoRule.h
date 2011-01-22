@@ -32,7 +32,8 @@ private:
     float magnitude;
 public:
     GotoRule() 
-        : randomFactor(0.0)
+        : IRule("Goto")
+        , randomFactor(0.0)
         , magnitude(0.1) {}
 
     void ReloadProperties(Utils::PropertyTreeNode pn) {

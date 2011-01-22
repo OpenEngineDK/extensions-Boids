@@ -29,7 +29,7 @@ protected:
 
 public:
     FleeRule(TransformationNode* fleeFromTrans)
-        : fleeFromTrans(fleeFromTrans) {}
+        : IRule("Flee"), fleeFromTrans(fleeFromTrans) {}
 
     ~FleeRule() {}
 

@@ -29,11 +29,11 @@ private:
     float boxDist;
 public:
     BoxRule(Vector<3,float> s, Vector<3,float> e) 
-        : startPoint(s)
+        : IRule("Box")
+        , startPoint(s)
         , endPoint(e) 
         , boxSpeed(10.0)
-        , boxDist(10.0)
-    {}
+        , boxDist(10.0){}
 
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         startPoint = pn.GetPath("box.start", startPoint);

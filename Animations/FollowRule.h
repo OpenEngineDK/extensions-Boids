@@ -29,7 +29,7 @@ private:
     float magnitude;
 public:
     FollowRule(TransformationNode* followTrans)
-    : followTrans(followTrans)
+        : IRule("Follow"), followTrans(followTrans)
     , magnitude(0.01) {}
     ~FollowRule() {}
 
