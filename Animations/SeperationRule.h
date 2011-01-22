@@ -29,6 +29,8 @@ public:
     
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         seperationDist = pn.GetPath("seperation.dist", 20.0);
+
+        logger.info << "Separation changed: " << seperationDist << logger.end;
     }
 
 

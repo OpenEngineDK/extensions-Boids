@@ -15,6 +15,12 @@ Flock::Flock() : rootNode(new SceneNode())
 ISceneNode* Flock::GetRootNode() {
     return rootNode;
 }
+
+void Flock::AddBoid(Boid* boid) {
+    boids.push_back(boid);
+    rootNode->AddNode(boid->GetTransformationNode());
+}
+
 void Flock::AddBoid(ISceneNode* node) {
     Boid* b = new Boid(node,randomGenerator);
     boids.push_back(b);
@@ -30,6 +36,11 @@ TransformationNode* Flock::GetTransformationNode(int idx) {
 void Flock::AddRule(IRule* r) {
     rules.push_back(r);
 }
+
+void Flock::RemoveRule(IRule* r) {
+    rules.remove(r);
+}
+
 
 void Flock::ReloadProperties(Utils::PropertyTreeNode n) {
     for (list<IRule*>::iterator itr = rules.begin();

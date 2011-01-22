@@ -32,11 +32,15 @@ private:
     std::vector<Boid*> boids;
     std::list<IRule*> rules;
     Math::RandomGenerator* randomGenerator;
+
 public:
     Flock();
     ISceneNode* GetRootNode();
     void AddRule(IRule* r);
+    void RemoveRule(IRule* r);
+    void AddBoid(Boid* boid);
     void AddBoid(ISceneNode* node);
+    
     void Handle(Core::ProcessEventArg arg);
     void ReloadProperties(Utils::PropertyTreeNode n);
     TransformationNode* GetTransformationNode(int idx);
