@@ -25,8 +25,16 @@ namespace Animations {
 class SeperationRule : public IRule {
     float seperationDist;    
 public:
-    SeperationRule() : IRule("Seperation"), seperationDist(20.0) {}
+    SeperationRule() : IRule("Separation"), seperationDist(20.0) {}
     
+    void SetDistance(float dist){
+        seperationDist = dist;
+    }
+
+    float GetDistance(){
+        return seperationDist;
+    }
+
     void ReloadProperties(Utils::PropertyTreeNode pn) {
         seperationDist = pn.GetPath("seperation.dist", 20.0);
     }

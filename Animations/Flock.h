@@ -36,8 +36,11 @@ private:
 public:
     Flock();
     ISceneNode* GetRootNode();
+    
     void AddRule(IRule* r);
     void RemoveRule(IRule* r);
+    IRule* GetRuleNamed(std::string name);
+
     void AddBoid(Boid* boid);
     void AddBoid(ISceneNode* node);
     

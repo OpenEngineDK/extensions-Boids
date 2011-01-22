@@ -41,6 +41,16 @@ void Flock::RemoveRule(IRule* r) {
     rules.remove(r);
 }
 
+IRule* Flock::GetRuleNamed(string name) {
+    std::list<IRule*>::iterator itr;
+    for(itr=rules.begin(); itr!=rules.end(); itr++){
+        if( (*itr)->GetName() == name ){
+            return *itr;
+        }
+    }
+    return NULL;
+}
+
 
 void Flock::ReloadProperties(Utils::PropertyTreeNode n) {
     for (list<IRule*>::iterator itr = rules.begin();
