@@ -8,8 +8,8 @@
 //--------------------------------------------------------------------
 
 
-#ifndef _OE_SEPERATION_RULE_H_
-#define _OE_SEPERATION_RULE_H_
+#ifndef _OE_SEPARATION_RULE_H_
+#define _OE_SEPARATION_RULE_H_
 
 #include <Animations/IRule.h>
 #include <Logging/Logger.h>
@@ -20,12 +20,12 @@ namespace Animations {
 /**
  * Short description.
  *
- * @class SeperationRule SeperationRule.h ons/Boids/Animations/SeperationRule.h
+ * @class SeparationRule SeparationRule.h ons/Boids/Animations/SeparationRule.h
  */
-class SeperationRule : public IRule {
+class SeparationRule : public IRule {
     float seperationDist;    
 public:
-    SeperationRule() : IRule("Separation"), seperationDist(20.0) {}
+    SeparationRule() : IRule("Separation"), seperationDist(20.0) {}
     
     void SetDistance(float dist){
         seperationDist = dist;
@@ -36,6 +36,7 @@ public:
     }
 
     void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        logger.error << "woot" << logger.end;
         seperationDist = pn->GetPath("seperation.dist", seperationDist);
     }
 
@@ -68,4 +69,4 @@ public:
 } // NS Animations
 } // NS OpenEngine
 
-#endif // _OE_SEPERATION_RULE_H_
+#endif // _OE_SEPARATION_RULE_H_

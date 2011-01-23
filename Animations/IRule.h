@@ -15,16 +15,21 @@
 #include <string>
 #include <Utils/PropertyTree.h>
 #include <Utils/PropertyTreeNode.h>
+#include <Core/IListener.h>
+#include <algorithm>
+#include <string> 
 
 namespace OpenEngine {
 namespace Animations {
+
+using Utils::PropertiesChangedEventArg;
 
 /**
  * Short description.
  *
  * @class IRule IRule.h ons/Boids/Animations/IRule.h
  */
-class IRule {
+class IRule : public Core::IListener<PropertiesChangedEventArg> {
 private:
     std::string name;
 
@@ -33,6 +38,16 @@ public:
     std::string GetName() { return name; }
     virtual void UpdateBoids(std::vector<Boid*> boids) =0;
     virtual void ReloadProperties(Utils::PropertyTreeNode* pn) =0;
+    void SetPropertyNode(Utils::PropertyTreeNode* node) {
+        std::string data = GetName();
+        std::transform(data.begin(), data.end(), data.begin(), ::tolower);
+
+        node->GetNode(data)->PropertiesChangedEvent().Attach(*this);
+    }
+
+    void Handle(Utils::PropertiesChangedEventArg arg) {
+        ReloadProperties(arg.node);
+    }
 };
 } // NS Animations
 } // NS OpenEngine

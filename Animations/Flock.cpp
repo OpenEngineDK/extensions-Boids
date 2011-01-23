@@ -78,6 +78,15 @@ void Flock::Handle(Core::ProcessEventArg arg) {
         b->Update(arg.approx);
     }
 }
+
+void Flock::SetPropertyNode(Utils::PropertyTreeNode* n) {
+    for(list<IRule*>::iterator itr = rules.begin();
+        itr != rules.end();
+        itr++) {
+        IRule *r = *itr;
+        r->SetPropertyNode(n);
+    }
+}
     
 
 }

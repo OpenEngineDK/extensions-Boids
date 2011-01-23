@@ -48,6 +48,7 @@ public:
     void Handle(Core::ProcessEventArg arg);
     void ReloadProperties(Utils::PropertyTreeNode* n);
     TransformationNode* GetTransformationNode(int idx);
+    void SetPropertyNode(Utils::PropertyTreeNode* n);
 };
 
 } // NS Animations
