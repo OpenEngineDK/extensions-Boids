@@ -12,6 +12,7 @@
 #define _OE_MULTI_GOTO_RULE_H_
 
 #include <Animations/IRule.h>
+#include <vector>
 
 namespace OpenEngine {
 namespace Animations {
@@ -24,9 +25,9 @@ namespace Animations {
 class MultiGotoRule : public IRule {
 private:
     float magnitude;
-    vector<Vector<3,float> > positions;
+    std::vector<Vector<3,float> > positions;
 public:
-    MultiGotoRule() : magnitude(0.1) {
+    MultiGotoRule() : IRule("MultiGotoRule"), magnitude(0.1) {
 
     }
 
@@ -46,6 +47,10 @@ public:
         magnitude = pn.GetPath("multigoto.magnitude", magnitude);
     }
 
+    void AddPosition(Vector<3,float> p) {
+        positions.push_back(p);
+    }
+    
     void UpdateBoids(std::vector<Boid*> boids) {
         int i=0;
         if (positions.size() == 0) return;

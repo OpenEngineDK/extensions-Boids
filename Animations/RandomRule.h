@@ -12,6 +12,7 @@
 #define _OE_RANDOM_RULE_H_
 
 #include <Animations/IRule.h>
+#include <Math/RandomGenerator.h>
 
 namespace OpenEngine {
 namespace Animations {
@@ -24,7 +25,7 @@ namespace Animations {
 class RandomRule : public IRule {
 private:
     float magnitude;
-    RandomGenerator rg;
+    Math::RandomGenerator rg;
 public:
     RandomRule() 
         : IRule("Random")

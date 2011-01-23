@@ -13,6 +13,9 @@
 
 #include <Utils/PropertyTree.h>
 #include <Animations/Flock.h>
+#include <Core/IListener.h>
+#include <Logging/Logger.h>
+#include <string>
 
 namespace OpenEngine {
 namespace Animations {
@@ -22,13 +25,13 @@ namespace Animations {
  *
  * @class FlockPropertyReloader FlockPropertyReloader.h ons/Boids/Animations/FlockPropertyReloader.h
  */
-class FlockPropertyReloader : public IListener<Utils::PropertiesChangedEventArg> {
+class FlockPropertyReloader : public Core::IListener<Utils::PropertiesChangedEventArg> {
 private:
     Flock* flock;
     Utils::PropertyTree *ptree;
-    string keyPath;
+    std::string keyPath;
 public:
-    FlockPropertyReloader(Flock* f, Utils::PropertyTree* pt, string kp) 
+    FlockPropertyReloader(Flock* f, Utils::PropertyTree* pt, std::string kp) 
         : flock(f)
         , ptree(pt)
         , keyPath(kp) {
