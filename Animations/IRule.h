@@ -14,6 +14,7 @@
 #include <vector>
 #include <string>
 #include <Utils/PropertyTree.h>
+#include <Utils/PropertyTreeNode.h>
 
 namespace OpenEngine {
 namespace Animations {
@@ -31,7 +32,7 @@ public:
     IRule(std::string name) : name(name) {}
     std::string GetName() { return name; }
     virtual void UpdateBoids(std::vector<Boid*> boids) =0;
-    virtual void ReloadProperties(Utils::PropertyTreeNode pn) {}
+    virtual void ReloadProperties(Utils::PropertyTreeNode* pn) =0;
 };
 } // NS Animations
 } // NS OpenEngine

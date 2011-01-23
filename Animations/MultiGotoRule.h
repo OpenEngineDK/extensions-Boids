@@ -31,20 +31,20 @@ public:
 
     }
 
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        if (pn.HaveNode("multigoto")) {
-            Utils::PropertyTreeNode mgn = pn.GetNode("multigoto");
-            if (mgn.HaveNode("positions")) {            
+    void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        if (pn->HaveNode("multigoto")) {
+            Utils::PropertyTreeNode* mgn = pn->GetNode("multigoto");
+            if (mgn->HaveNode("positions")) {            
                 positions.clear();
-                Utils::PropertyTreeNode posNode = mgn.GetNode("positions");
-                unsigned int num = posNode.GetSize();
+                Utils::PropertyTreeNode* posNode = mgn->GetNode("positions");
+                unsigned int num = posNode->GetSize();
                 for (unsigned int i=0; i<num; i++) {
-                    Vector<3,float> p = posNode.GetNode(i).Get<Vector<3,float> >();
+                    Vector<3,float> p = posNode->GetNodeIdx(i)->Get(Vector<3,float>());
                     positions.push_back(p);
                 }
             }
         }
-        magnitude = pn.GetPath("multigoto.magnitude", magnitude);
+        magnitude = pn->GetPath("multigoto.magnitude", magnitude);
     }
 
     void AddPosition(Vector<3,float> p) {

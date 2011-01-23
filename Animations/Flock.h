@@ -18,6 +18,7 @@
 #include <vector>
 #include <Math/RandomGenerator.h>
 #include <Utils/PropertyTree.h>
+#include <Utils/PropertyTreeNode.h>
 
 namespace OpenEngine {
 namespace Animations {
@@ -45,7 +46,7 @@ public:
     void AddBoid(ISceneNode* node);
     
     void Handle(Core::ProcessEventArg arg);
-    void ReloadProperties(Utils::PropertyTreeNode n);
+    void ReloadProperties(Utils::PropertyTreeNode* n);
     TransformationNode* GetTransformationNode(int idx);
 };
 

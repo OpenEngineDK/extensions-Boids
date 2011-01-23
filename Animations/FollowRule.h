@@ -36,8 +36,8 @@ public:
     void SetTransformationToFollow(TransformationNode* followTrans) {
         this->followTrans = followTrans;
     }
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        magnitude = pn.GetPath("follow.magnitude",0.01f);
+    void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        magnitude = pn->GetPath("follow.magnitude",magnitude);
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {

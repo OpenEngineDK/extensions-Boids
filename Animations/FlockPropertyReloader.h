@@ -25,7 +25,8 @@ namespace Animations {
  *
  * @class FlockPropertyReloader FlockPropertyReloader.h ons/Boids/Animations/FlockPropertyReloader.h
  */
-class FlockPropertyReloader : public Core::IListener<Utils::PropertiesChangedEventArg> {
+class FlockPropertyReloader  : public Core::IListener<Utils::PropertiesChangedEventArg>
+{
 private:
     Flock* flock;
     Utils::PropertyTree *ptree;
@@ -37,10 +38,10 @@ public:
         , keyPath(kp) {
         ptree->PropertiesChangedEvent().Attach(*this);
     }
-    void Handle(Utils::PropertiesChangedEventArg arg) {
-        flock->ReloadProperties(ptree->GetNode(keyPath));
-        logger.info << "Reloading" << logger.end;
-    }
+     void Handle(Utils::PropertiesChangedEventArg arg) {
+         flock->ReloadProperties(ptree->GetRootNode()->GetNode(keyPath));
+         logger.info << "Reloading" << logger.end;
+     }
 };
 } // NS Animations
 } // NS OpenEngine

@@ -31,9 +31,9 @@ public:
         , startPoint(s)
         , endPoint(e) {}
 
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        startPoint = pn.GetPath("boxlimit.start", startPoint);
-        endPoint = pn.GetPath("boxlimit.end", endPoint);        
+    void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        startPoint = pn->GetPath("boxlimit.start", startPoint);
+        endPoint = pn->GetPath("boxlimit.end", endPoint);        
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {

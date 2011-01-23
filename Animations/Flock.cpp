@@ -52,7 +52,7 @@ IRule* Flock::GetRuleNamed(string name) {
 }
 
 
-void Flock::ReloadProperties(Utils::PropertyTreeNode n) {
+void Flock::ReloadProperties(Utils::PropertyTreeNode* n) {
     for (list<IRule*>::iterator itr = rules.begin();
          itr != rules.end();
          itr++) {

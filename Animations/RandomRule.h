@@ -32,8 +32,8 @@ public:
         , magnitude(10.0) {
         rg.SeedWithTime();
     }
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        magnitude = pn.GetPath("random.magnitude", 10.0);
+    void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        magnitude = pn->GetPath("random.magnitude", magnitude);
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {

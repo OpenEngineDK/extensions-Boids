@@ -35,11 +35,11 @@ public:
         , boxSpeed(10.0)
         , boxDist(10.0){}
 
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        startPoint = pn.GetPath("box.start", startPoint);
-        endPoint = pn.GetPath("box.end", endPoint);
-        boxSpeed = pn.GetPath("box.speed", boxSpeed);
-        boxDist = pn.GetPath("box.dist", boxDist);
+    void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        startPoint = pn->GetPath("box.start", startPoint);
+        endPoint = pn->GetPath("box.end", endPoint);
+        boxSpeed = pn->GetPath("box.speed", boxSpeed);
+        boxDist = pn->GetPath("box.dist", boxDist);
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {

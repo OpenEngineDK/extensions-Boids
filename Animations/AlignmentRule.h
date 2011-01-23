@@ -27,8 +27,8 @@ private:
 public:
     AlignmentRule() : IRule("Alignment"), magnitude(0.001) {}
     
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        magnitude = pn.GetPath("alignment.magnitude",0.001);
+    void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        magnitude = pn->GetPath("alignment.magnitude", magnitude);
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {

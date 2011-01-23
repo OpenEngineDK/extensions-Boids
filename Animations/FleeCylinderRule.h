@@ -52,9 +52,9 @@ public:
     ~FleeCylinderRule() {}
 
 
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        //        radius = pn.GetPath("flee.radius", 100.0);
-        //        scareFactor = pn.GetPath("flee.scare", 1.0);
+    void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        // radius = pn->GetPath("flee.radius", radius);
+        // scareFactor = pn->GetPath("flee.scare", scareFactor);
     }
 
     void SetCylinder(Vector<3,float> axisPoint0, 

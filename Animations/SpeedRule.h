@@ -29,9 +29,9 @@ private:
 public:
     SpeedRule() : IRule("Speed"), minSpeed(30.0), maxSpeed(100.0) {}
 
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        minSpeed = pn.GetPath("speed.min", 30.0);
-        maxSpeed = pn.GetPath("speed.max", 100.0);
+    void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        minSpeed = pn->GetPath("speed.min", minSpeed);
+        maxSpeed = pn->GetPath("speed.max", maxSpeed);
 
     }
     void UpdateBoids(std::vector<Boid*> boids) {

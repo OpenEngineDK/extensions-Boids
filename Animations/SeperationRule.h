@@ -35,8 +35,8 @@ public:
         return seperationDist;
     }
 
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        seperationDist = pn.GetPath("seperation.dist", 20.0);
+    void ReloadProperties(Utils::PropertyTreeNode* pn) {
+        seperationDist = pn->GetPath("seperation.dist", seperationDist);
     }
 
 
