@@ -27,7 +27,7 @@ private:
     float magnitude;
     std::vector<Vector<3,float> > positions;
 public:
-    MultiGotoRule() : IRule("MultiGotoRule"), magnitude(0.1) {
+    MultiGotoRule() : IRule("MultiGoto"), magnitude(0.0) {
 
     }
 
