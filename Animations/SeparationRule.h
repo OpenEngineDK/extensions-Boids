@@ -36,8 +36,7 @@ public:
     }
 
     void ReloadProperties(Utils::PropertyTreeNode* pn) {
-        logger.error << "woot" << logger.end;
-        seperationDist = pn->GetPath("seperation.dist", seperationDist);
+        seperationDist = pn->GetPath("separation.dist", seperationDist);
     }
 
 

@@ -41,12 +41,14 @@ public:
     void SetPropertyNode(Utils::PropertyTreeNode* node) {
         std::string data = GetName();
         std::transform(data.begin(), data.end(), data.begin(), ::tolower);
+        Utils::PropertyTreeNode* n = node->GetNode(data);
 
-        node->GetNode(data)->PropertiesChangedEvent().Attach(*this);
+        n->PropertiesChangedEvent().Attach(*this);
     }
 
     void Handle(Utils::PropertiesChangedEventArg arg) {
-        ReloadProperties(arg.node);
+        // Legacy, we except to get the parent
+        ReloadProperties(arg.node->GetParent());
     }
 };
 } // NS Animations
