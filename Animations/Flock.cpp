@@ -9,7 +9,8 @@ using namespace std;
 using namespace Math;
 
 Flock::Flock() : rootNode(new SceneNode())
-               , randomGenerator(new RandomGenerator()) {    
+               , randomGenerator(new RandomGenerator())
+               , pNode(NULL) {    
 }
 
 ISceneNode* Flock::GetRootNode() {
@@ -35,6 +36,8 @@ TransformationNode* Flock::GetTransformationNode(int idx) {
 
 void Flock::AddRule(IRule* r) {
     rules.push_back(r);
+    if (pNode)
+        r->SetPropertyNode(pNode);
 }
 
 void Flock::RemoveRule(IRule* r) {
@@ -80,6 +83,7 @@ void Flock::Handle(Core::ProcessEventArg arg) {
 }
 
 void Flock::SetPropertyNode(Utils::PropertyTreeNode* n) {
+    pNode = n;
     for(list<IRule*>::iterator itr = rules.begin();
         itr != rules.end();
         itr++) {
