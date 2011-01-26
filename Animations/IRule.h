@@ -44,6 +44,7 @@ public:
         Utils::PropertyTreeNode* n = node->GetNode(data);
 
         n->PropertiesChangedEvent().Attach(*this);
+        ReloadProperties(node);
     }
 
     void Handle(Utils::PropertiesChangedEventArg arg) {
