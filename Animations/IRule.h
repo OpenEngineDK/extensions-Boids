@@ -48,7 +48,7 @@ public:
 
     void Handle(Utils::PropertiesChangedEventArg arg) {
         // Legacy, we except to get the parent
-        ReloadProperties(arg.node->GetParent());
+        ReloadProperties(arg.GetNode()->GetParent());
     }
 };
 } // NS Animations
