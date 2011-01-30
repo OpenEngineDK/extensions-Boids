@@ -37,7 +37,7 @@ public:
     }
 
     void UpdateBoids(std::vector<Boid*> boids) {
-        for (std::vector<Boid*>::iterator itr = boids.begin();
+         for (std::vector<Boid*>::iterator itr = boids.begin();
              itr != boids.end();
              itr++) {
             Boid* b = *itr;
@@ -51,7 +51,6 @@ public:
                 }
             }
             b->SetPosition(npos);
-
         }
     }    
 };

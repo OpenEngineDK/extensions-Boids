@@ -65,20 +65,23 @@ void Flock::ReloadProperties(Utils::PropertyTreeNode* n) {
 }
 
 void Flock::Handle(Core::ProcessEventArg arg) {
-    // Fire rules
-    for (list<IRule*>::iterator itr = rules.begin();
-         itr != rules.end();
-         itr++) {
-        IRule *rule = *itr;
-        rule->UpdateBoids(boids);
-    }
-    
-    // Update positions
-    for (vector<Boid*>::iterator itr = boids.begin();
-         itr != boids.end();
-         itr++) {
-        Boid *b = *itr;
-        b->Update(arg.approx);
+
+    if( boids.size() > 0 ) {
+        // Fire rules
+        for (list<IRule*>::iterator itr = rules.begin();
+             itr != rules.end();
+             itr++) {
+            IRule *rule = *itr;
+            rule->UpdateBoids(boids);
+        }
+        
+        // Update positions
+        for (vector<Boid*>::iterator itr = boids.begin();
+             itr != boids.end();
+             itr++) {
+            Boid *b = *itr;
+            b->Update(arg.approx);
+        }
     }
 }
 

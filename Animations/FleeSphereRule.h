@@ -65,7 +65,7 @@ public:
             
             if( dist > radius ) continue;
                 
-            float danger = 1.0 - (dist / radius);
+            float danger = pow(1.0 - (dist / radius),2);
             Vector<3,float> fleeVec = diff * danger * scareFactor;
             b->AddVelocity(fleeVec);
         }

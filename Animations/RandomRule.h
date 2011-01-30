@@ -17,6 +17,8 @@
 namespace OpenEngine {
 namespace Animations {
 
+using OpenEngine::Math::RandomGenerator;
+
 /**
  * Short description.
  *

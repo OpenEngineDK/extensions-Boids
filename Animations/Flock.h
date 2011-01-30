@@ -34,6 +34,7 @@ private:
     std::list<IRule*> rules;
     Math::RandomGenerator* randomGenerator;
     Utils::PropertyTreeNode* pNode;
+
 public:
     Flock();
     ISceneNode* GetRootNode();

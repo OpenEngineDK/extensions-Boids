@@ -11,14 +11,19 @@
 #ifndef _OE_FLOCK_PROPERTY_RELOADER_H_
 #define _OE_FLOCK_PROPERTY_RELOADER_H_
 
+#include <Core/IListener.h>
 #include <Utils/PropertyTree.h>
 #include <Animations/Flock.h>
 #include <Core/IListener.h>
 #include <Logging/Logger.h>
 #include <string>
 
+
 namespace OpenEngine {
 namespace Animations {
+
+using OpenEngine::Core::IListener;
+using namespace OpenEngine::Utils;
 
 /**
  * Short description.
@@ -38,10 +43,11 @@ public:
         , keyPath(kp) {
         ptree->PropertiesChangedEvent().Attach(*this);
     }
-     void Handle(Utils::PropertiesChangedEventArg arg) {
-         flock->ReloadProperties(ptree->GetRootNode()->GetNode(keyPath));
-         logger.info << "Reloading" << logger.end;
-     }
+
+    void Handle(Utils::PropertiesChangedEventArg arg) {
+        flock->ReloadProperties(ptree->GetRootNode()->GetNode(keyPath));
+        logger.info << "Reloading" << logger.end;
+    }
 };
 } // NS Animations
 } // NS OpenEngine
