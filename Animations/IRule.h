@@ -48,6 +48,7 @@ public:
 
     std::string GetName() { return name; }
     bool GetEnabled() { return enabled; }
+    void SetEnabled(bool enabled) { this->enabled = enabled; }
 
     virtual void UpdateBoids(std::vector<Boid*> boids) =0;
     virtual void ReloadProperties(Utils::PropertyTreeNode* pn) =0;
