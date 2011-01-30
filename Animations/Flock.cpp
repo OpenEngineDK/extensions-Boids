@@ -71,8 +71,10 @@ void Flock::Handle(Core::ProcessEventArg arg) {
         for (list<IRule*>::iterator itr = rules.begin();
              itr != rules.end();
              itr++) {
-            IRule *rule = *itr;
-            rule->UpdateBoids(boids);
+            IRule* rule = *itr;
+            if( rule->GetEnabled() ){
+                rule->UpdateBoids(boids);
+            }
         }
         
         // Update positions

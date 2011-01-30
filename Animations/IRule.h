@@ -32,23 +32,43 @@ using Utils::PropertiesChangedEventArg;
 class IRule : public Core::IListener<PropertiesChangedEventArg> {
 private:
     std::string name;
+    bool enabled;
+    Utils::PropertyTreeNode* ptNode;
 
 public:
-    IRule(std::string name) : name(name) {}
+    IRule(std::string name) 
+        : name(name)
+        , enabled(true)
+        , ptNode(NULL){}
+    ~IRule() {
+        if( ptNode ){
+            ptNode->PropertiesChangedEvent().Detach(*this);
+        }
+    }
+
     std::string GetName() { return name; }
+    bool GetEnabled() { return enabled; }
+
     virtual void UpdateBoids(std::vector<Boid*> boids) =0;
     virtual void ReloadProperties(Utils::PropertyTreeNode* pn) =0;
+
     void SetPropertyNode(Utils::PropertyTreeNode* node) {
+        if( ptNode ){
+            ptNode->PropertiesChangedEvent().Detach(*this);
+        }        
+
+        this->ptNode = node;
         std::string data = GetName();
         std::transform(data.begin(), data.end(), data.begin(), ::tolower);
         Utils::PropertyTreeNode* n = node->GetNode(data);
-
+        enabled = n->GetPath("enabled", true);
         n->PropertiesChangedEvent().Attach(*this);
         ReloadProperties(node);
     }
 
     void Handle(Utils::PropertiesChangedEventArg arg) {
         // Legacy, we except to get the parent
+        enabled = arg.GetNode()->GetPath("enabled", true);
         ReloadProperties(arg.GetNode()->GetParent());
     }
 };

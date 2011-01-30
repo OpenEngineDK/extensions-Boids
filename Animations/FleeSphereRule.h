@@ -39,9 +39,9 @@ public:
     ~FleeSphereRule() {}
 
 
-    void ReloadProperties(Utils::PropertyTreeNode* pn) {
-        //        radius = pn.GetPath("flee.radius", 100.0);
-        //        scareFactor = pn.GetPath("flee.scare", 1.0);
+    void ReloadProperties(Utils::PropertyTreeNode* n) {
+        radius = n->GetPath("flee.radius", 100.0);
+        scareFactor =  n->GetPath("flee.scare", 1.0);
     }
 
     void SetRadius(float radius) {

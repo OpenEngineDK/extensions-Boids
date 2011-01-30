@@ -34,9 +34,7 @@ public:
     ~FleeRule() {}
 
 
-    void ReloadProperties(Utils::PropertyTreeNode pn) {
-        //        radius = pn.GetPath("flee.radius", 100.0);
-        //        scareFactor = pn.GetPath("flee.scare", 1.0);
+    void ReloadProperties(Utils::PropertyTreeNode* n) {
     }
 
     void SetTransformationToFleeFrom(TransformationNode* fleeFromTrans) {
