@@ -1,8 +1,8 @@
 # Boids dist
 
-dist /extensions/PropertyTree/PropertyTree.dist               http://openengine.dk/code/extensions/PropertyTree/PropertyTree.dist
+dist /extensions/PropertyTree/PropertyTree.dist               https://raw.githubusercontent.com/OpenEngineDK/extensions-PropertyTree/master/PropertyTree.dist
 
 # standard set of extensions
-darcs /extensions/Boids        http://openengine.dk/code/extensions/Boids
-darcs-dev /extensions/Boids    fh.daimi.au.dk:/users/cgd/code/extensions/Boids
+git /extensions/Boids        https://github.com/OpenEngineDK/extensions-Boids.git
+git-dev /extensions/Boids    git@github.com:OpenEngineDK/extensions-Boids.git
 
